@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="nep2n - Official website of music producer and artist Nico nep2n">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph / Social Media Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="nep2n - Music Producer & Artist">
+    <meta property="og:description" content="Music producer & artist crafting beats that hit different. Blending electronic, hip-hop, and experimental sounds.">
+    <meta property="og:url" content="https://nep2n.com">
+    <meta property="og:image" content="https://nep2n.com/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="nep2n - Music Producer & Artist">
+    <meta name="twitter:description" content="Music producer & artist crafting beats that hit different.">
+    <meta name="twitter:image" content="https://nep2n.com/og-image.jpg">
+    
+    <title>nep2n</title>
+    
+    <!-- Trident Favicon (SVG data URI) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 L50 75 M50 75 L35 95 M50 75 L65 95 M50 20 L30 35 L30 50 M50 20 L70 35 L70 50 M50 5 L50 15 M30 35 L30 25 L35 15 M70 35 L70 25 L65 15' stroke='%2300a8e8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary: #000;
+            --bg: #fff;
+            --accent: #00a8e8;
+            --accent-light: #00d4ff;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: "Space Mono", "Courier New", monospace;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            background: var(--bg);
+            color: var(--primary);
+        }
+
+        /* Boot Screen */
+        .boot-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--primary);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .boot-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .boot-logo {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--bg);
+            letter-spacing: 4px;
+            animation: glitch 0.3s ease infinite;
+        }
+
+        .boot-text {
+            color: var(--bg);
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .boot-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .boot-progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            animation: bootLoad 1s ease-out forwards;
+        }
+
+        @keyframes bootLoad {
+            0% { width: 0%; }
+            40% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-1px, -1px); }
+            80% { transform: translate(1px, 1px); }
+        }
+
+        .menubar {
+            height: 40px;
+            background: var(--bg);
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 13px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .menubar-left {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            padding-right: 10px;
+            gap: 8px;
+        }
+
+        .menubar-left::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand {
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-right: 16px;
+            font-size: 18px;
+            letter-spacing: 2px;
+            flex-shrink: 0;
+            background: var(--primary);
+            color: var(--bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .menubar-left a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            flex-shrink: 0;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .menubar-left a:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        #clock {
+            font-family: "Space Mono", monospace;
+            font-weight: 700;
+            font-size: 13px;
+            background: var(--primary);
+            color: var(--bg);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 350px) {
+            #clock {
+                display: none;
+            }
+        }
+
+        .desktop {
+            height: calc(100vh - 40px);
+            width: 100%;
+            position: relative;
+            background: 
+                linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px),
+                linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px);
+            background-size: 24px 24px;
+            overflow: hidden;
+        }
+
+        .window {
+            width: 520px;
+            max-width: 90%;
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            box-shadow: 8px 8px 0 var(--primary);
+            border-radius: 8px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            flex-direction: column;
+            z-index: 10;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        opacity 0.2s ease,
+                        visibility 0.2s ease;
+        }
+
+        .window.has-position {
+            transform: scale(0.9);
+        }
+
+        .window.has-position.open {
+            transform: scale(1);
+        }
+
+        /* Mobile: fullscreen windows */
+        @media (max-width: 600px) {
+            .window {
+                width: 100%;
+                max-width: 100%;
+                height: calc(100vh - 40px);
+                top: 0;
+                left: 0;
+                transform: translateY(20px);
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+                box-shadow: none;
+            }
+
+            .window.open {
+                transform: translateY(0);
+            }
+
+            .window.has-position {
+                transform: translateY(20px);
+            }
+
+            .window.has-position.open {
+                transform: translateY(0);
+            }
+
+            .content {
+                max-height: calc(100vh - 40px - 44px) !important;
+                height: 100%;
+            }
+
+            .title-bar {
+                cursor: default;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .window {
+                box-shadow: 8px 8px 0 var(--primary);
+            }
+        }
+
+        .window.open {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .title-bar {
+            height: 44px;
+            background: var(--primary);
+            color: var(--bg);
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            justify-content: space-between;
+            cursor: grab;
+            touch-action: none;
+            border-radius: 6px 6px 0 0;
+        }
+
+        @media (max-width: 600px) {
+            .title-bar {
+                border-radius: 0;
+            }
+        }
+
+        .title-bar:active {
+            cursor: grabbing;
+        }
+
+        .title-bar h4 {
+            font-size: 13px;
+            font-family: "Space Mono", monospace;
+            font-weight: 700;
+            letter-spacing: 1px;
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control-btn {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .control-btn.close {
+            width: 18px;
+            height: 18px;
+            background: #ff5f57;
+        }
+
+        .content {
+            padding: 24px;
+            color: var(--primary);
+            line-height: 1.7;
+            min-height: 200px;
+            font-family: "Inter", sans-serif;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .content h2 {
+            margin-bottom: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 22px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .content p {
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .content a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .content a:hover {
+            opacity: 0.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .social-link:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 var(--accent);
+            opacity: 1;
+            color: var(--bg);
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 86px;
+            background: #f8f8f8;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #eee;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: rotation 0.8s linear infinite;
+        }
+
+        @keyframes rotation {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .iframe-container.loaded iframe {
+            opacity: 1;
+        }
+
+        .iframe-container.loaded .loader {
+            display: none;
+        }
+
+        .dock-container {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .dock {
+            background: #fff;
+            border: 2px solid #000;
+            box-shadow: 6px 6px 0 #000;
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            gap: 15px;
+            pointer-events: auto;
+        }
+
+        .dock-icon {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 22px;
+            color: #000;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        background 0.15s ease,
+                        box-shadow 0.15s ease;
+            position: relative;
+        }
+
+        .dock-icon:hover {
+            transform: translateY(-8px) scale(1.1);
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 8px 16px var(--shadow);
+        }
+
+        .dock-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            background: var(--primary);
+            color: var(--bg);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .dock-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Active dock indicator */
+        .dock-icon.active::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Boot Screen -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-logo">nep2n</div>
+        <div class="boot-text">Loading...</div>
+        <div class="boot-progress">
+            <div class="boot-progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="menubar">
+        <div class="menubar-left">
+            <span class="brand">nep2n</span>
+            <a href="https://www.youtube.com/@prodbynep2n" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a href="https://music.apple.com/us/artist/nico-nep2n/1805526831" target="_blank" rel="noopener noreferrer">Apple Music</a>
+        </div>
+        <div id="clock">12:00 PM</div>
+    </div>
+
+    <div class="desktop">
+        <div class="window" id="win-music">
+            <div class="title-bar">
+                <h4>Music Player</h4>
+                <div class="window-controls">
+                    <button class="control-btn close" data-window="win-music" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="content">
+                <h2>Latest Track</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <div class="iframe-container">
+                    <div class="loader"></div>
+                    <iframe style="border-radius: 12px"
+                        src="https://open.spotify.com/embed/track/3bilkBx1GvVriOJbxAtJuT?utm_source=generator&theme=0"
+                        allowfullscreen
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="window" id="win-about">
+            <div class="title-bar">
+                <h4>About</h4>
+                <div class="window-controls">
+                    <button class="control-btn close" data-window="win-about" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="content">
+                <h2>Nico nep2n</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@prodbynep2n" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
+                    <a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer" class="social-link">Spotify</a>
+                    <a href="https://music.apple.com/us/artist/nico-nep2n/1805526831" target="_blank" rel="noopener noreferrer" class="social-link">Apple Music</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="window" id="win-contact">
+            <div class="title-bar">
+                <h4>Contact</h4>
+                <div class="window-controls">
+                    <button class="control-btn close" data-window="win-contact" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="content">
+                <h2>Get in Touch</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+                <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">
+                    <a href="mailto:beatsbyneptune111@gmail.com">beatsbyneptune111@gmail.com</a>
+                </p>
+                <p style="margin-top: 20px; font-size: 13px; color: #888;">Ut enim ad minim veniam</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dock-container">
+        <div class="dock">
+            <button class="dock-icon" data-window="win-music" data-tooltip="Music" aria-label="Open Music"><i class="fas fa-music"></i></button>
+            <button class="dock-icon" data-window="win-about" data-tooltip="About" aria-label="Open About"><i class="fas fa-user"></i></button>
+            <button class="dock-icon" data-window="win-contact" data-tooltip="Contact" aria-label="Open Contact"><i class="fas fa-envelope"></i></button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // Boot screen animation
+            const bootScreen = document.getElementById('bootScreen');
+            setTimeout(() => {
+                bootScreen.classList.add('hidden');
+            }, 1200);
+
+            let topZ = 10;
+            const desktop = document.querySelector('.desktop');
+            const windows = document.querySelectorAll('.window');
+            const clock = document.getElementById('clock');
+            const dockIcons = document.querySelectorAll('.dock-icon');
+
+            // Store window positions
+            const windowPositions = {};
+
+            // Check if mobile
+            function isMobile() {
+                return window.innerWidth <= 600;
+            }
+
+            function bringToFront(win) {
+                win.style.zIndex = ++topZ;
+            }
+
+            function updateDockIndicators() {
+                dockIcons.forEach(icon => {
+                    const winId = icon.dataset.window;
+                    const win = document.getElementById(winId);
+                    if (win && win.classList.contains('open')) {
+                        icon.classList.add('active');
+                    } else {
+                        icon.classList.remove('active');
+                    }
+                });
+            }
+
+            function openWindow(id) {
+                const win = document.getElementById(id);
+                if (win) {
+                    // On mobile, close other windows first
+                    if (isMobile()) {
+                        windows.forEach(w => {
+                            if (w.id !== id) w.classList.remove('open');
+                        });
+                    }
+
+                    // Restore saved position if exists (desktop only)
+                    if (!isMobile() && windowPositions[id]) {
+                        win.style.top = windowPositions[id].top;
+                        win.style.left = windowPositions[id].left;
+                        win.classList.add('has-position');
+                    }
+
+                    win.classList.add('open');
+                    bringToFront(win);
+                    updateDockIndicators();
+                }
+            }
+
+            function closeWindow(id) {
+                const win = document.getElementById(id);
+                if (win) {
+                    // Save position before closing (desktop only)
+                    if (!isMobile() && win.classList.contains('has-position')) {
+                        windowPositions[id] = {
+                            top: win.style.top,
+                            left: win.style.left
+                        };
+                    }
+                    win.classList.remove('open');
+                    updateDockIndicators();
+                }
+            }
+
+            // Event delegation for dock and close buttons
+            document.addEventListener('click', function (e) {
+                const dockBtn = e.target.closest('.dock-icon');
+                const closeBtn = e.target.closest('.control-btn.close');
+
+                if (dockBtn) {
+                    openWindow(dockBtn.dataset.window);
+                } else if (closeBtn) {
+                    closeWindow(closeBtn.dataset.window);
+                }
+            });
+
+            // Keyboard support - ESC to close top window
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const openWindows = [...document.querySelectorAll('.window.open')];
+                    if (openWindows.length) {
+                        const topWindow = openWindows.reduce((a, b) => 
+                            (parseInt(a.style.zIndex) || 0) > (parseInt(b.style.zIndex) || 0) ? a : b
+                        );
+                        closeWindow(topWindow.id);
+                    }
+                }
+            });
+
+            // Bring window to front on interaction
+            windows.forEach(function (win) {
+                win.addEventListener('mousedown', function () { bringToFront(win); });
+                win.addEventListener('touchstart', function () { bringToFront(win); }, { passive: true });
+            });
+
+            // Draggable windows (desktop only)
+            windows.forEach(function (win) {
+                const header = win.querySelector('.title-bar');
+                let startX, startY, initialLeft, initialTop;
+
+                function onStart(e) {
+                    // Disable dragging on mobile
+                    if (isMobile()) return;
+                    if (e.target.closest('.control-btn')) return;
+
+                    const touch = e.touches ? e.touches[0] : e;
+                    const rect = win.getBoundingClientRect();
+                    const parentRect = desktop.getBoundingClientRect();
+
+                    // Disable transition to prevent jump when removing transform
+                    win.style.transition = 'none';
+
+                    win.style.top = (rect.top - parentRect.top) + 'px';
+                    win.style.left = (rect.left - parentRect.left) + 'px';
+                    win.style.transform = 'none';
+                    win.classList.add('has-position');
+
+                    // Force reflow to apply styles immediately
+                    win.offsetHeight;
+
+                    startX = touch.clientX;
+                    startY = touch.clientY;
+                    initialLeft = win.offsetLeft;
+                    initialTop = win.offsetTop;
+
+                    document.addEventListener('mousemove', onMove);
+                    document.addEventListener('mouseup', onEnd);
+                    document.addEventListener('touchmove', onMove, { passive: true });
+                    document.addEventListener('touchend', onEnd);
+                }
+
+                function onMove(e) {
+                    const touch = e.touches ? e.touches[0] : e;
+                    win.style.left = initialLeft + (touch.clientX - startX) + 'px';
+                    win.style.top = initialTop + (touch.clientY - startY) + 'px';
+                }
+
+                function onEnd() {
+                    // Re-enable transitions
+                    win.style.transition = '';
+                    
+                    // Save position
+                    windowPositions[win.id] = {
+                        top: win.style.top,
+                        left: win.style.left
+                    };
+
+                    document.removeEventListener('mousemove', onMove);
+                    document.removeEventListener('mouseup', onEnd);
+                    document.removeEventListener('touchmove', onMove);
+                    document.removeEventListener('touchend', onEnd);
+                }
+
+                header.addEventListener('mousedown', onStart);
+                header.addEventListener('touchstart', onStart, { passive: true });
+            });
+
+            // Iframe load handler
+            document.querySelectorAll('.iframe-container iframe').forEach(function (iframe) {
+                iframe.addEventListener('load', function () {
+                    this.parentElement.classList.add('loaded');
+                });
+            });
+
+            // Clock with date
+            function updateClock() {
+                const now = new Date();
+                const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                clock.textContent = time;
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Auto-open about window after boot
+            setTimeout(() => {
+                openWindow('win-about');
+            }, 1600);
+        })();
+    </script>
+</body>
+
+</html>
