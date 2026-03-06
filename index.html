@@ -6,20 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="nep2n - Official website of music producer and artist Nico nep2n">
     <meta name="theme-color" content="#2b69de">
-    
-    <!-- Open Graph / Social Media Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="nep2n - Music Producer & Artist">
-    <meta property="og:description" content="Music producer & artist crafting beats that hit different. Blending electronic, hip-hop, and experimental sounds.">
-    <meta property="og:url" content="https://nep2n.com">
-    <meta property="og:image" content="https://nep2n.com/og-image.jpg">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="nep2n - Music Producer & Artist">
-    <meta name="twitter:description" content="Music producer & artist crafting beats that hit different.">
-    <meta name="twitter:image" content="https://nep2n.com/og-image.jpg">
-    
+
     <title>nep2n</title>
     
     <!-- Trident Favicon (SVG data URI) -->
@@ -28,33 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     <style>
         :root {
-            --xp-blue-deep: #0b2f86;
-            --xp-blue: #245edb;
             --xp-blue-mid: #3d8bfd;
-            --xp-blue-light: #7db9ff;
-            --xp-sky: #6eb6ff;
-            --xp-cloud: #dff4ff;
-            --xp-green: #57a51f;
-            --xp-green-dark: #2f7608;
-            --xp-green-light: #93d53f;
-            --xp-window: #ece9d8;
-            --xp-panel: #f6f3ea;
-            --xp-border-dark: #2f5fb1;
-            --xp-border-light: #ffffff;
             --xp-text: #10305f;
             --xp-shadow: rgba(13, 47, 122, 0.28);
             --xp-inset-dark: #7f9db9;
             --xp-inset-light: #ffffff;
-            --xp-button-top: #ffffff;
-            --xp-button-bottom: #d4d0c8;
-            --xp-taskbar: #2a64d6;
-            --xp-taskbar-dark: #1945ad;
-            --xp-tray: #78a7ff;
             --xp-link: #0b56c4;
-            --aero-glass: rgba(255, 255, 255, 0.42);
-            --aero-glass-strong: rgba(255, 255, 255, 0.58);
-            --aero-blue: rgba(72, 153, 255, 0.34);
-            --aero-border: rgba(255, 255, 255, 0.72);
             --aero-shadow: rgba(23, 73, 158, 0.26);
         }
 
@@ -74,7 +40,6 @@
             color: var(--xp-text);
         }
 
-        /* Boot Screen */
         .boot-screen {
             position: fixed;
             inset: 0;
@@ -98,14 +63,6 @@
             color: #fff;
             letter-spacing: 1px;
             text-shadow: 0 2px 0 rgba(0, 0, 0, 0.24);
-        }
-
-        .boot-text {
-            color: rgba(255, 255, 255, 0.92);
-            margin-top: 20px;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
         }
 
         .boot-progress {
@@ -423,6 +380,10 @@
             width: 640px;
         }
 
+        .window.wide .content {
+            max-height: 72vh;
+        }
+
         .window.has-position {
             transform: scale(0.9);
         }
@@ -431,7 +392,6 @@
             transform: scale(1);
         }
 
-        /* Mobile: fullscreen windows */
         @media (max-width: 600px) {
             .window {
                 width: 100%;
@@ -642,7 +602,7 @@
         }
 
         .iframe-container.tall {
-            height: 392px;
+            height: 468px;
         }
 
         .loader {
@@ -678,8 +638,7 @@
             display: none;
         }
 
-        .window-panel,
-        .info-strip {
+        .window-panel {
             background:
                 linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(228, 244, 255, 0.4) 100%);
             border: 1px solid rgba(155, 194, 232, 0.78);
@@ -690,38 +649,6 @@
             margin-bottom: 14px;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-        }
-
-        .info-strip {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            font-size: 12px;
-            color: #27446f;
-        }
-
-        .label {
-            display: inline-block;
-            padding: 2px 8px;
-            border: 1px solid rgba(155, 194, 232, 0.92);
-            background: rgba(255, 255, 255, 0.76);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .xp-status {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-size: 12px;
-            color: #27446f;
-        }
-
-        .xp-status i {
-            color: #3c79de;
         }
 
         @media (max-width: 700px) {
@@ -819,7 +746,7 @@
                 </div>
             </div>
             <div class="content">
-                <h2>Nico nep2n</h2>
+                <h2>nico nep2n</h2>
                 <div class="window-panel">
                     <p>nico nep2n is an emerging alternative synth-pop artist creating ethereal, spacey soundscapes that feel like stepping into another dimension. As he blends genres to create a sound uniquely his own, his music explores themes of love, introspection, and justice, bringing listeners deeper into his world. With releases like “space” and “don’t turn me off,” he pushes to bring a new definition of what an independent artist can be.</p>
                 </div>
