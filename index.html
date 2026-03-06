@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="nep2n - Official website of music producer and artist Nico nep2n">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#2b69de">
     
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:type" content="website">
@@ -25,41 +25,60 @@
     <!-- Trident Favicon (SVG data URI) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 L50 75 M50 75 L35 95 M50 75 L65 95 M50 20 L30 35 L30 50 M50 20 L70 35 L70 50 M50 5 L50 15 M30 35 L30 25 L35 15 M70 35 L70 25 L65 15' stroke='%2300a8e8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     <style>
         :root {
-            --primary: #000;
-            --bg: #fff;
-            --accent: #00a8e8;
-            --accent-light: #00d4ff;
-            --shadow: rgba(0, 0, 0, 0.15);
+            --xp-blue-deep: #0b2f86;
+            --xp-blue: #245edb;
+            --xp-blue-mid: #3d8bfd;
+            --xp-blue-light: #7db9ff;
+            --xp-sky: #6eb6ff;
+            --xp-cloud: #dff4ff;
+            --xp-green: #57a51f;
+            --xp-green-dark: #2f7608;
+            --xp-green-light: #93d53f;
+            --xp-window: #ece9d8;
+            --xp-panel: #f6f3ea;
+            --xp-border-dark: #2f5fb1;
+            --xp-border-light: #ffffff;
+            --xp-text: #10305f;
+            --xp-shadow: rgba(13, 47, 122, 0.28);
+            --xp-inset-dark: #7f9db9;
+            --xp-inset-light: #ffffff;
+            --xp-button-top: #ffffff;
+            --xp-button-bottom: #d4d0c8;
+            --xp-taskbar: #2a64d6;
+            --xp-taskbar-dark: #1945ad;
+            --xp-tray: #78a7ff;
+            --xp-link: #0b56c4;
+            --aero-glass: rgba(255, 255, 255, 0.42);
+            --aero-glass-strong: rgba(255, 255, 255, 0.58);
+            --aero-blue: rgba(72, 153, 255, 0.34);
+            --aero-border: rgba(255, 255, 255, 0.72);
+            --aero-shadow: rgba(23, 73, 158, 0.26);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: "Space Mono", "Courier New", monospace;
+            font-family: Tahoma, Verdana, sans-serif;
             overflow: hidden;
             height: 100vh;
             width: 100vw;
-            background: var(--bg);
-            color: var(--primary);
+            background: #0c2f3a;
+            color: var(--xp-text);
         }
 
         /* Boot Screen */
         .boot-screen {
             position: fixed;
             inset: 0;
-            background: var(--primary);
+            background: radial-gradient(circle at 50% 32%, #1d4bb8 0%, #153a9b 38%, #0a256e 100%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -74,140 +93,316 @@
         }
 
         .boot-logo {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 700;
-            color: var(--bg);
-            letter-spacing: 4px;
-            animation: glitch 0.3s ease infinite;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.24);
         }
 
         .boot-text {
-            color: var(--bg);
+            color: rgba(255, 255, 255, 0.92);
             margin-top: 20px;
-            font-size: 14px;
-            opacity: 0.7;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         .boot-progress {
-            width: 200px;
-            height: 4px;
-            background: rgba(255,255,255,0.2);
+            width: 240px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.12);
             margin-top: 30px;
-            border-radius: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 3px;
             overflow: hidden;
+            padding: 2px;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
         }
 
         .boot-progress-bar {
             height: 100%;
-            background: var(--accent);
-            width: 0%;
-            animation: bootLoad 1s ease-out forwards;
+            width: 40%;
+            background: linear-gradient(180deg, #9fd1ff 0%, #4b9eff 35%, #1c6ff8 100%);
+            border-radius: 2px;
+            animation: bootSlide 1s ease-in-out infinite;
         }
 
-        @keyframes bootLoad {
+        @keyframes bootSlide {
             0% { width: 0%; }
-            40% { width: 70%; }
-            100% { width: 100%; }
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            60% { transform: translate(-1px, -1px); }
-            80% { transform: translate(1px, 1px); }
-        }
-
-        .menubar {
-            height: 40px;
-            background: var(--bg);
-            border-bottom: 2px solid var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 16px;
-            font-size: 13px;
-            position: relative;
-            z-index: 1000;
-        }
-
-        .menubar-left {
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            white-space: nowrap;
-            scrollbar-width: none;
-            padding-right: 10px;
-            gap: 8px;
-        }
-
-        .menubar-left::-webkit-scrollbar {
-            display: none;
-        }
-
-        .brand {
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-right: 16px;
-            font-size: 18px;
-            letter-spacing: 2px;
-            flex-shrink: 0;
-            background: var(--primary);
-            color: var(--bg);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .menubar-left a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 13px;
-            flex-shrink: 0;
-            padding: 6px 12px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .menubar-left a:hover {
-            background: var(--accent);
-            color: var(--bg);
-        }
-
-        #clock {
-            font-family: "Space Mono", monospace;
-            font-weight: 700;
-            font-size: 13px;
-            background: var(--primary);
-            color: var(--bg);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 350px) {
-            #clock {
-                display: none;
-            }
+            20% { transform: translateX(0); width: 35%; }
+            100% { transform: translateX(560%); width: 35%; }
         }
 
         .desktop {
-            height: calc(100vh - 40px);
+            height: calc(100vh - 42px);
             width: 100%;
             position: relative;
-            background: 
-                linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px),
-                linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px);
-            background-size: 24px 24px;
             overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 28%, rgba(109, 233, 255, 0.06) 100%),
+                url("img/background.PNG");
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .desktop::before {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 180px;
+            background:
+                linear-gradient(180deg, transparent 0%, rgba(67, 203, 235, 0.08) 48%, rgba(22, 87, 105, 0.18) 100%),
+                radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.08) 0%, rgba(118, 237, 255, 0.06) 24%, transparent 46%);
+            pointer-events: none;
+        }
+
+        .desktop::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 84% 18%, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0.06) 6%, transparent 8%),
+                radial-gradient(circle at 78% 26%, rgba(255, 255, 255, 0.14) 0, rgba(255, 255, 255, 0.04) 5%, transparent 7%),
+                radial-gradient(circle at 89% 31%, rgba(255, 255, 255, 0.12) 0, rgba(255, 255, 255, 0.04) 4%, transparent 6%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0, transparent 26%);
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .desktop-icons {
+            position: absolute;
+            top: 18px;
+            left: 14px;
+            display: grid;
+            gap: 14px;
+            z-index: 5;
+        }
+
+        .sticky-note {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 286px;
+            min-height: 176px;
+            padding: 18px 18px 20px;
+            background:
+                linear-gradient(180deg, rgba(255, 252, 195, 0.96) 0%, rgba(246, 227, 128, 0.94) 100%);
+            color: #54430a;
+            border: 1px solid rgba(177, 140, 39, 0.62);
+            border-radius: 2px 2px 16px 2px;
+            box-shadow:
+                0 18px 34px rgba(10, 35, 48, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            transform: rotate(1.5deg);
+            z-index: 6;
+        }
+
+        .sticky-note::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 82px;
+            height: 24px;
+            transform: translateX(-50%) rotate(-4deg);
+            background: rgba(255, 255, 255, 0.26);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+
+        .sticky-note h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #4a3807;
+        }
+
+        .sticky-note p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.45;
+            color: #604a0b;
+        }
+
+        .sticky-note a {
+            color: #325c9e;
+            font-weight: 700;
+            text-decoration: underline;
+            word-break: break-word;
+        }
+
+        .desktop-icon {
+            width: 92px;
+            padding: 8px 6px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 6px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(79, 162, 255, 0.1) 100%);
+            color: #fff;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.72);
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .desktop-icon:hover,
+        .desktop-icon:focus-visible {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(86, 165, 255, 0.28) 100%);
+            border-color: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 10px 20px rgba(33, 94, 189, 0.16);
+            outline: none;
+        }
+
+        .desktop-icon i {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 30px;
+            color: #f5f8ff;
+        }
+
+        .desktop-icon span {
+            display: block;
+            font-size: 12px;
+            line-height: 1.25;
+        }
+
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 42px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0, rgba(255, 255, 255, 0.06) 22%, transparent 24%),
+                linear-gradient(180deg, rgba(98, 182, 255, 0.94) 0%, rgba(46, 111, 224, 0.94) 50%, rgba(19, 66, 171, 0.96) 100%);
+            border-top: 1px solid rgba(197, 230, 255, 0.9);
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            z-index: 2000;
+            box-shadow:
+                0 -1px 0 rgba(255, 255, 255, 0.55),
+                0 -10px 28px rgba(46, 111, 224, 0.22);
+            backdrop-filter: blur(14px) saturate(135%);
+            -webkit-backdrop-filter: blur(14px) saturate(135%);
+        }
+
+        .start-button {
+            height: 32px;
+            min-width: 96px;
+            padding: 0 18px 0 14px;
+            border: 1px solid #0f4e10;
+            border-radius: 0 16px 16px 0;
+            background: linear-gradient(180deg, #48b52b 0%, #2c9918 48%, #22780d 100%);
+            color: #fff;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.45),
+                inset -1px -1px 0 rgba(0, 0, 0, 0.22);
+        }
+
+        .start-button i {
+            font-size: 16px;
+        }
+
+        .taskbar-apps {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+            margin: 0 8px;
+        }
+
+        .taskbar-button {
+            min-width: 120px;
+            max-width: 190px;
+            height: 30px;
+            padding: 0 12px;
+            border: 1px solid rgba(186, 226, 255, 0.82);
+            border-radius: 3px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.08) 34%, transparent 35%),
+                linear-gradient(180deg, rgba(131, 194, 255, 0.72) 0%, rgba(70, 137, 243, 0.72) 52%, rgba(43, 99, 214, 0.7) 100%);
+            color: #eef6ff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.62),
+                inset -1px -1px 0 rgba(0, 0, 0, 0.12),
+                0 8px 18px rgba(18, 72, 175, 0.12);
+            overflow-x: auto;
+            white-space: nowrap;
+            cursor: pointer;
+            opacity: 0.92;
+            backdrop-filter: blur(10px) saturate(135%);
+            -webkit-backdrop-filter: blur(10px) saturate(135%);
+        }
+
+        .taskbar-button.active {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.22) 28%, transparent 29%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(216, 231, 255, 0.76) 22%, rgba(149, 189, 253, 0.76) 100%);
+            color: #16366f;
+            opacity: 1;
+        }
+
+        .taskbar-button i {
+            font-size: 13px;
+        }
+
+        .tray {
+            height: 32px;
+            min-width: 108px;
+            padding: 0 12px;
+            border: 1px solid rgba(196, 229, 255, 0.82);
+            border-radius: 3px 0 0 3px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.36) 0%, rgba(255, 255, 255, 0.08) 32%, transparent 33%),
+                linear-gradient(180deg, rgba(158, 199, 255, 0.78) 0%, rgba(121, 169, 255, 0.76) 55%, rgba(94, 142, 244, 0.74) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            color: #fff;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.62),
+                inset -1px -1px 0 rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(10px) saturate(135%);
+            -webkit-backdrop-filter: blur(10px) saturate(135%);
+        }
+
+        .tray i {
+            font-size: 12px;
+        }
+
+        #clock {
+            font-size: 12px;
+            font-weight: 700;
         }
 
         .window {
-            width: 520px;
+            width: 560px;
             max-width: 90%;
-            background: var(--bg);
-            border: 2px solid var(--primary);
-            box-shadow: 8px 8px 0 var(--primary);
-            border-radius: 8px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0.16) 18%, transparent 19%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.36) 0%, rgba(234, 247, 255, 0.24) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 8px 8px 0 0;
+            box-shadow:
+                0 22px 44px var(--aero-shadow),
+                0 8px 18px rgba(255, 255, 255, 0.18) inset;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -219,6 +414,13 @@
             transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
                         opacity 0.2s ease,
                         visibility 0.2s ease;
+            backdrop-filter: blur(18px) saturate(145%);
+            -webkit-backdrop-filter: blur(18px) saturate(145%);
+            overflow: hidden;
+        }
+
+        .window.wide {
+            width: 640px;
         }
 
         .window.has-position {
@@ -234,14 +436,14 @@
             .window {
                 width: 100%;
                 max-width: 100%;
-                height: calc(100vh - 40px);
+                height: calc(100vh - 42px);
                 top: 0;
                 left: 0;
                 transform: translateY(20px);
                 border-radius: 0;
-                border-left: none;
-                border-right: none;
-                border-bottom: none;
+                border-left: 0;
+                border-right: 0;
+                border-bottom: 0;
                 box-shadow: none;
             }
 
@@ -258,7 +460,7 @@
             }
 
             .content {
-                max-height: calc(100vh - 40px - 44px) !important;
+                max-height: calc(100vh - 42px - 34px) !important;
                 height: 100%;
             }
 
@@ -269,7 +471,7 @@
 
         @media (min-width: 601px) {
             .window {
-                box-shadow: 8px 8px 0 var(--primary);
+                box-shadow: 10px 14px 28px var(--xp-shadow);
             }
         }
 
@@ -281,17 +483,22 @@
         }
 
         .title-bar {
-            height: 44px;
-            background: var(--primary);
-            color: var(--bg);
-            border-bottom: 2px solid var(--primary);
+            height: 34px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.12) 26%, transparent 27%),
+                linear-gradient(180deg, rgba(14, 85, 185, 0.96) 0%, rgba(18, 104, 221, 0.88) 48%, rgba(86, 164, 255, 0.82) 100%);
+            color: #fff;
+            border: 1px solid rgba(189, 229, 255, 0.88);
             display: flex;
             align-items: center;
-            padding: 0 14px;
+            padding: 0 4px 0 10px;
             justify-content: space-between;
             cursor: grab;
             touch-action: none;
-            border-radius: 6px 6px 0 0;
+            border-radius: 7px 7px 0 0;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 0 rgba(13, 58, 137, 0.3);
         }
 
         @media (max-width: 600px) {
@@ -305,83 +512,82 @@
         }
 
         .title-bar h4 {
-            font-size: 13px;
-            font-family: "Space Mono", monospace;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
             pointer-events: none;
-            text-transform: uppercase;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
         }
 
         .window-controls {
             display: flex;
-            gap: 8px;
+            gap: 4px;
         }
 
         .control-btn {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: none;
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(198, 231, 255, 0.9);
+            border-radius: 3px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.22) 34%, transparent 35%),
+                linear-gradient(180deg, rgba(254, 254, 254, 0.72) 0%, rgba(215, 231, 255, 0.72) 45%, rgba(156, 196, 255, 0.66) 100%);
             cursor: pointer;
-            transition: transform 0.15s ease;
+            color: #123d84;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.75),
+                0 4px 10px rgba(19, 74, 169, 0.14);
         }
 
         .control-btn:hover {
-            transform: scale(1.2);
+            filter: brightness(1.03);
         }
 
         .control-btn.close {
-            width: 18px;
-            height: 18px;
-            background: #ff5f57;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.1) 30%, transparent 31%),
+                linear-gradient(180deg, rgba(255, 191, 155, 0.82) 0%, rgba(255, 131, 87, 0.82) 45%, rgba(214, 79, 37, 0.86) 100%);
+            color: #fff;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
         }
 
         .content {
-            padding: 24px;
-            color: var(--primary);
-            line-height: 1.7;
-            min-height: 200px;
-            font-family: "Inter", sans-serif;
+            padding: 18px;
+            color: var(--xp-text);
+            line-height: 1.5;
+            min-height: 230px;
             overflow-y: auto;
-            max-height: 60vh;
+            max-height: 62vh;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(241, 249, 255, 0.24) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.84);
         }
 
         .content h2 {
-            margin-bottom: 12px;
-            font-weight: 900;
-            text-transform: uppercase;
+            margin-bottom: 14px;
             font-size: 22px;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .content h2::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent);
+            font-weight: 700;
+            color: #0f3978;
         }
 
         .content p {
-            margin-bottom: 16px;
-            font-size: 15px;
-            color: #444;
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #1b2f53;
         }
 
         .content a {
-            color: var(--accent);
-            text-decoration: none;
+            color: var(--xp-link);
+            text-decoration: underline;
             font-weight: 600;
-            transition: opacity 0.2s;
         }
 
         .content a:hover {
-            opacity: 0.7;
+            color: #0a3f95;
         }
 
         .social-links {
@@ -395,41 +601,55 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 16px;
-            background: var(--primary);
-            color: var(--bg);
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 8px 14px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.2) 34%, transparent 35%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(214, 239, 255, 0.54) 100%);
+            color: #10305f;
+            border: 1px solid rgba(150, 190, 231, 0.8);
+            border-radius: 3px;
+            font-size: 12px;
             font-weight: 600;
             text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.92),
+                0 6px 12px rgba(42, 98, 192, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .social-link:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0 var(--accent);
-            opacity: 1;
-            color: var(--bg);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.28) 34%, transparent 35%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.76) 0%, rgba(232, 248, 255, 0.62) 100%);
+            color: #10305f;
         }
 
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 86px;
-            background: #f8f8f8;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
+            height: 92px;
+            background: #fff;
+            border: 1px solid var(--xp-inset-dark);
+            box-shadow:
+                inset 1px 1px 0 var(--xp-inset-light),
+                inset -1px -1px 0 #c7c3b7;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            padding: 1px;
+        }
+
+        .iframe-container.tall {
+            height: 392px;
         }
 
         .loader {
             width: 40px;
             height: 40px;
             border: 4px solid #eee;
-            border-top-color: var(--accent);
+            border-top-color: var(--xp-blue-mid);
             border-radius: 50%;
             animation: rotation 0.8s linear infinite;
         }
@@ -448,7 +668,6 @@
             height: 100%;
             opacity: 0;
             transition: opacity 0.5s ease;
-            border-radius: 10px;
         }
 
         .iframe-container.loaded iframe {
@@ -459,89 +678,108 @@
             display: none;
         }
 
-        .dock-container {
-            position: absolute;
-            bottom: 24px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 2000;
-            pointer-events: none;
+        .window-panel,
+        .info-strip {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(228, 244, 255, 0.4) 100%);
+            border: 1px solid rgba(155, 194, 232, 0.78);
+            box-shadow:
+                inset 1px 1px 0 rgba(255, 255, 255, 0.9),
+                0 10px 20px rgba(68, 129, 225, 0.08);
+            padding: 12px;
+            margin-bottom: 14px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .dock {
-            background: #fff;
-            border: 2px solid #000;
-            box-shadow: 6px 6px 0 #000;
-            padding: 10px 15px;
-            border-radius: 10px;
+        .info-strip {
             display: flex;
-            gap: 15px;
-            pointer-events: auto;
-        }
-
-        .dock-icon {
-            width: 45px;
-            height: 45px;
-            background: #fff;
-            border: 2px solid #000;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            cursor: pointer;
-            font-size: 22px;
-            color: #000;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                        background 0.15s ease,
-                        box-shadow 0.15s ease;
-            position: relative;
+            gap: 12px;
+            font-size: 12px;
+            color: #27446f;
         }
 
-        .dock-icon:hover {
-            transform: translateY(-8px) scale(1.1);
-            background: var(--accent);
-            color: var(--bg);
-            box-shadow: 0 8px 16px var(--shadow);
-        }
-
-        .dock-icon::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%) translateY(5px);
-            background: var(--primary);
-            color: var(--bg);
-            padding: 6px 12px;
-            border-radius: 6px;
+        .label {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid rgba(155, 194, 232, 0.92);
+            background: rgba(255, 255, 255, 0.76);
             font-size: 11px;
-            font-weight: 600;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.2s ease;
-            pointer-events: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
-        .dock-icon:hover::after {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
+        .xp-status {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 12px;
+            color: #27446f;
         }
 
-        /* Active dock indicator */
-        .dock-icon.active::before {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
+        .xp-status i {
+            color: #3c79de;
+        }
+
+        @media (max-width: 700px) {
+            .desktop-icons {
+                grid-auto-flow: column;
+                grid-template-rows: repeat(1, 1fr);
+                overflow-x: auto;
+                max-width: calc(100vw - 20px);
+            }
+
+            .sticky-note {
+                top: auto;
+                right: 16px;
+                bottom: 18px;
+                width: min(286px, calc(100vw - 32px));
+                min-height: auto;
+                transform: rotate(0.8deg);
+            }
+
+            .taskbar-apps {
+                gap: 4px;
+            }
+
+            .taskbar-button {
+                min-width: 0;
+                max-width: 116px;
+                padding: 0 8px;
+            }
+
+            .start-button {
+                min-width: 78px;
+                padding-right: 12px;
+                font-size: 16px;
+            }
+
+            .tray {
+                min-width: 82px;
+                padding: 0 8px;
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .taskbar-button span,
+            .start-button span,
+            .tray i:first-child {
+                display: none;
+            }
+
+            .start-button {
+                min-width: 54px;
+                justify-content: center;
+                padding: 0;
+            }
+
+            .tray {
+                min-width: 66px;
+            }
         }
     </style>
 </head>
@@ -550,83 +788,93 @@
     <!-- Boot Screen -->
     <div class="boot-screen" id="bootScreen">
         <div class="boot-logo">nep2n</div>
-        <div class="boot-text">Loading...</div>
         <div class="boot-progress">
             <div class="boot-progress-bar"></div>
         </div>
     </div>
 
-    <div class="menubar">
-        <div class="menubar-left">
-            <span class="brand">nep2n</span>
-            <a href="https://www.youtube.com/@prodbynep2n" target="_blank" rel="noopener noreferrer">YouTube</a>
-            <a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer">Spotify</a>
-            <a href="https://music.apple.com/us/artist/nico-nep2n/1805526831" target="_blank" rel="noopener noreferrer">Apple Music</a>
-        </div>
-        <div id="clock">12:00 PM</div>
-    </div>
-
     <div class="desktop">
-        <div class="window" id="win-music">
-            <div class="title-bar">
-                <h4>Music Player</h4>
-                <div class="window-controls">
-                    <button class="control-btn close" data-window="win-music" aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="content">
-                <h2>Featured Track</h2>
-                <div class="iframe-container">
-                    <div class="loader"></div>
-                    <iframe style="border-radius: 12px"
-                        src="https://open.spotify.com/embed/track/3bilkBx1GvVriOJbxAtJuT?utm_source=generator&theme=0"
-                        allowfullscreen
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy">
-                    </iframe>
-                </div>
-            </div>
+        <div class="desktop-icons" aria-label="Desktop shortcuts">
+            <button class="desktop-icon window-launcher" data-window="win-about" aria-label="Open About">
+                <i class="fas fa-user-circle"></i>
+                <span>About Nico</span>
+            </button>
+            <button class="desktop-icon window-launcher" data-window="win-music" aria-label="Open Music Player">
+                <i class="fas fa-compact-disc"></i>
+                <span>Music Player</span>
+            </button>
         </div>
+
+        <aside class="sticky-note" aria-label="Contact note">
+            <h3>Contact</h3>
+            <p>Booking, production work, or collaborations:</p>
+            <p><a href="mailto:beatsbyneptune111@gmail.com">beatsbyneptune111@gmail.com</a></p>
+        </aside>
 
         <div class="window" id="win-about">
             <div class="title-bar">
                 <h4>About</h4>
                 <div class="window-controls">
-                    <button class="control-btn close" data-window="win-about" aria-label="Close"></button>
+                    <button class="control-btn close" data-window="win-about" aria-label="Close">×</button>
                 </div>
             </div>
             <div class="content">
                 <h2>Nico nep2n</h2>
-                <p>nico nep2n is an emerging alternative synth-pop artist creating ethereal, spacey soundscapes that feel like stepping into another dimension. As he blends genres to create a sound uniquely his own, his music explores themes of love, introspection, and justice, bringing listeners deeper into his world. With releases like “space” and “don’t turn me off,” he pushes to bring a new definition of what an independent artist can be.</p>
+                <div class="window-panel">
+                    <p>nico nep2n is an emerging alternative synth-pop artist creating ethereal, spacey soundscapes that feel like stepping into another dimension. As he blends genres to create a sound uniquely his own, his music explores themes of love, introspection, and justice, bringing listeners deeper into his world. With releases like “space” and “don’t turn me off,” he pushes to bring a new definition of what an independent artist can be.</p>
+                </div>
                 <div class="social-links">
-                    <a href="https://www.youtube.com/@prodbynep2n" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
-                    <a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer" class="social-link">Spotify</a>
-                    <a href="https://music.apple.com/us/artist/nico-nep2n/1805526831" target="_blank" rel="noopener noreferrer" class="social-link">Apple Music</a>
+                    <a href="https://www.youtube.com/@prodbynep2n" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+                    <a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-spotify"></i><span>Spotify</span></a>
+                    <a href="https://music.apple.com/us/artist/nico-nep2n/1805526831" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fas fa-music"></i><span>Apple Music</span></a>
                 </div>
             </div>
         </div>
 
-        <div class="window" id="win-contact">
+        <div class="window wide" id="win-music">
             <div class="title-bar">
-                <h4>Contact</h4>
+                <h4>Music Player</h4>
                 <div class="window-controls">
-                    <button class="control-btn close" data-window="win-contact" aria-label="Close"></button>
+                    <button class="control-btn close" data-window="win-music" aria-label="Close">×</button>
                 </div>
             </div>
             <div class="content">
-                <h2>Get in Touch</h2>
-                <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">
-                    <a href="mailto:beatsbyneptune111@gmail.com">beatsbyneptune111@gmail.com</a>
-                </p>
+                <h2>Popular on Spotify</h2>
+                <div class="window-panel">
+                    <div class="iframe-container tall">
+                        <div class="loader"></div>
+                        <iframe
+                        src="https://open.spotify.com/embed/artist/6wlE93PWcBtOyty44ehwQi?utm_source=generator&theme=0"
+                        allowfullscreen
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                <p><a href="https://open.spotify.com/artist/6wlE93PWcBtOyty44ehwQi" target="_blank" rel="noopener noreferrer">Open Spotify</a></p>
             </div>
         </div>
     </div>
 
-    <div class="dock-container">
-        <div class="dock">
-            <button class="dock-icon" data-window="win-music" data-tooltip="Music" aria-label="Open Music"><i class="fas fa-music"></i></button>
-            <button class="dock-icon" data-window="win-about" data-tooltip="About" aria-label="Open About"><i class="fas fa-user"></i></button>
-            <button class="dock-icon" data-window="win-contact" data-tooltip="Contact" aria-label="Open Contact"><i class="fas fa-envelope"></i></button>
+    <div class="taskbar">
+        <button class="start-button" type="button" aria-label="Open menu">
+            <i class="fas fa-circle"></i>
+            <span>menu</span>
+        </button>
+        <div class="taskbar-apps" aria-label="Open windows">
+            <button class="taskbar-button window-launcher" data-window="win-about" aria-label="Open About">
+                <i class="fas fa-user-circle"></i>
+                <span>About Nico</span>
+            </button>
+            <button class="taskbar-button window-launcher" data-window="win-music" aria-label="Open Music">
+                <i class="fas fa-compact-disc"></i>
+                <span>Music Player</span>
+            </button>
+        </div>
+        <div class="tray" aria-label="System tray">
+            <i class="fas fa-volume-up" aria-hidden="true"></i>
+            <i class="fas fa-signal" aria-hidden="true"></i>
+            <div id="clock">12:00 PM</div>
         </div>
     </div>
 
@@ -642,7 +890,7 @@
             const desktop = document.querySelector('.desktop');
             const windows = document.querySelectorAll('.window');
             const clock = document.getElementById('clock');
-            const dockIcons = document.querySelectorAll('.dock-icon');
+            const taskbarButtons = document.querySelectorAll('.taskbar-button');
 
             // Store window positions
             const windowPositions = {};
@@ -657,14 +905,10 @@
             }
 
             function updateDockIndicators() {
-                dockIcons.forEach(icon => {
-                    const winId = icon.dataset.window;
+                taskbarButtons.forEach(button => {
+                    const winId = button.dataset.window;
                     const win = document.getElementById(winId);
-                    if (win && win.classList.contains('open')) {
-                        icon.classList.add('active');
-                    } else {
-                        icon.classList.remove('active');
-                    }
+                    button.classList.toggle('active', !!(win && win.classList.contains('open')));
                 });
             }
 
@@ -706,13 +950,13 @@
                 }
             }
 
-            // Event delegation for dock and close buttons
+            // Event delegation for launchers and close buttons
             document.addEventListener('click', function (e) {
-                const dockBtn = e.target.closest('.dock-icon');
+                const launcherBtn = e.target.closest('.window-launcher');
                 const closeBtn = e.target.closest('.control-btn.close');
 
-                if (dockBtn) {
-                    openWindow(dockBtn.dataset.window);
+                if (launcherBtn) {
+                    openWindow(launcherBtn.dataset.window);
                 } else if (closeBtn) {
                     closeWindow(closeBtn.dataset.window);
                 }
